@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Register | ByteSpace",
+};
+
 export default function RegisterPage() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto min-h-[90vh] gap-12">
