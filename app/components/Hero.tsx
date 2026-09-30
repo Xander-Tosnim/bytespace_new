@@ -47,7 +47,7 @@ export default function Hero() {
           <div className="absolute -bottom-170 left-1/2 -z-10 h-274 w-284 -translate-x-1/2 rounded-full border-320 border-primary-color" />
           {/* male studend */}
           <Image
-            src="/images/male-studend.png"
+            src="/images/male-student.png"
             alt="Student learning"
             width={500}
             height={600}
