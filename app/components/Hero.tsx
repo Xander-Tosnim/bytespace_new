@@ -52,7 +52,6 @@ export default function Hero() {
             width={500}
             height={600}
             className="object-contain drop-shadow-black drop-shadow-2xl h-auto"
-            priority
           />
 
           {/* UI/UX Design */}
