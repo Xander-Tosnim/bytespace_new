@@ -51,7 +51,7 @@ export default function Hero() {
             alt="Student learning"
             width={500}
             height={600}
-            className="object-contain drop-shadow-black drop-shadow-2xl h-auto"
+            className="object-contain drop-shadow-black drop-shadow-2xl w-auto h-auto"
             priority
           />
 
