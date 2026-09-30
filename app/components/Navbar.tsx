@@ -47,7 +47,7 @@ export default function Navbar() {
         {/* Actions */}
         <div className="hidden items-center gap-7 md:flex">
           <Link href="/login">Sign In</Link>
-          <Link href="/join">Join Us</Link>
+          <Link href="/register">Join Us</Link>
           <Link href="/cart">
             <Image src={scrolled ? "/cart-black.svg" : "/cart.svg"} alt="" width={14} height={14} />
           </Link>
