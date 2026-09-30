@@ -49,9 +49,9 @@ export default function Hero() {
           <Image
             src="/images/male-studend.png"
             alt="Student learning"
-            width={500}
-            height={600}
-            className="object-contain drop-shadow-black drop-shadow-2xl w-auto h-auto"
+            width={680}
+            height={680}
+            className="object-contain drop-shadow-black drop-shadow-2xl translate-x-7"
             priority
           />
 
@@ -61,25 +61,25 @@ export default function Hero() {
             alt="UI/UX Design"
             width={220}
             height={100}
-            className="absolute -left-16 top-26 z-20"
+            className="absolute left-0 top-30 z-20"
           />
 
           {/* Happy Students */}
           <Image
             src="/images/hero-happy_students-tab.png"
             alt="Happy Students"
-            width={220}
-            height={100}
-            className="absolute right-92 top-72 z-20"
+            width={240}
+            height={120}
+            className="absolute -translate-x-14 top-72 z-20"
           />
 
           {/* Learning Progress */}
           <Image
             src="/images/hero-learning_progress-tab.png"
             alt="Learning Progress"
-            width={220}
-            height={100}
-            className="absolute top-26 -right-20 z-20"
+            width={240}
+            height={120}
+            className="absolute top-34 right-0 z-20"
           />
         </div>
         {/* 3d twist element start*/}
