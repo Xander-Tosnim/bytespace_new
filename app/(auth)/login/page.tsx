@@ -1,17 +1,40 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Login | ByteSpace",
-};
-
 export default function LoginPage() {
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from(leftRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    gsap.from(rightRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.2,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto min-h-[90vh] gap-12">
       {/* Left Column */}
-      <div className="w-1/2 space-y-6">
+      <div ref={leftRef} className="w-1/2 space-y-6">
         <div>
-          <h2 className="text-2xl font-poppins-semibold text-white">Sign in with ease</h2>
+          <h2 className="text-2xl font-poppins-semibold text-white">
+            Sign in with ease
+          </h2>
           <p className="text-white/80 text-md font-satoshi mt-2 leading-relaxed max-w-lg">
             Experience a seamless and efficient sign-in process that grants you
             instant access to a world of knowledge.
@@ -29,7 +52,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Column (Form) */}
-      <div className="w-1/2 flex justify-end">
+      <div ref={rightRef} className="w-1/2 flex justify-end">
         <div className="bg-white flex flex-col justify-around rounded-3xl p-10 w-full lg:min-h-[70vh] max-w-md shadow-xl space-y-6">
           <div>
             <span className="text-md font-satoshi text-secondary-color tracking-wide">
@@ -72,15 +95,17 @@ export default function LoginPage() {
 
           <div className="relative flex items-center justify-center my-6">
             <div className="border-t border-gray-300 w-full" />
-            <span className="bg-white px-3 text-xs text-gray-500 absolute">or</span>
+            <span className="bg-white px-3 text-xs text-gray-500 absolute">
+              or
+            </span>
           </div>
 
           <div className="flex justify-center gap-4">
             <button className="w-14 h-14 rounded-2xl border border-gray-400 flex items-center justify-center hover:cursor-pointer hover:bg-gray-200 font-bold">
-              <Image src="auth/facebook.svg" alt="" width={26} height={26}/>
+              <Image src="auth/facebook.svg" alt="" width={26} height={26} />
             </button>
             <button className="w-14 h-14 rounded-2xl border border-gray-400 flex items-center justify-center hover:cursor-pointer hover:bg-gray-200 font-bold">
-              <Image src="auth/google.svg" alt="" width={26} height={26}/>
+              <Image src="auth/google.svg" alt="" width={26} height={26} />
             </button>
           </div>
 

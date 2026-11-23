@@ -1,15 +1,36 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Register | ByteSpace",
-};
-
 export default function RegisterPage() {
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from(leftRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    gsap.from(rightRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.2,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto min-h-[90vh] gap-12">
       {/* Left Column */}
-      <div className="w-1/2 space-y-6">
+      <div ref={leftRef} className="w-1/2 space-y-6">
         <div>
           <h2 className="text-2xl font-poppins-semibold text-white">
             Sign up and come in
@@ -32,7 +53,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Right Column */}
-      <div className="lg:w-1/2 flex justify-end">
+      <div ref={rightRef} className="lg:w-1/2 flex justify-end">
         <div className="bg-white flex flex-col justify-around rounded-3xl p-10 w-full lg:min-h-[70vh] max-w-md shadow-xl space-y-2">
           <div>
             <span className="text-md font-satoshi text-secondary-color tracking-wide">
