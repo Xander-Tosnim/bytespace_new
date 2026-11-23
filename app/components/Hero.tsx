@@ -1,22 +1,162 @@
-import React from "react";
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import Image from "next/image";
 
 export default function Hero() {
+  // Text refs
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const pRef = useRef<HTMLParagraphElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Image refs
+  const maleStudentRef = useRef<HTMLImageElement>(null);
+  const uiTabRef = useRef<HTMLImageElement>(null);
+  const happyTabRef = useRef<HTMLImageElement>(null);
+  const progressTabRef = useRef<HTMLImageElement>(null);
+  const twistLimeRef = useRef<HTMLImageElement>(null);
+  const twistWhiteRightRef = useRef<HTMLImageElement>(null);
+  const twistWhiteLeftRef = useRef<HTMLImageElement>(null);
+  const circleLeftRef = useRef<HTMLImageElement>(null);
+  const barrelRef = useRef<HTMLImageElement>(null);
+  const triangleRightRef = useRef<HTMLImageElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    gsap.set([h1Ref.current, pRef.current, searchRef.current], {
+      y: 40,
+      opacity: 0
+    });
+
+    gsap.set(maleStudentRef.current, {
+      scale: 0.4,
+      rotation: -15,
+      opacity: 0
+    });
+
+    gsap.set([uiTabRef.current, happyTabRef.current, progressTabRef.current], {
+      y: 60,
+      opacity: 0
+    });
+
+    gsap.set(
+      [twistLimeRef.current, twistWhiteRightRef.current, twistWhiteLeftRef.current,
+       circleLeftRef.current, barrelRef.current, triangleRightRef.current],
+      {
+        opacity: 0,
+        scale: 0.7
+      }
+    );
+
+    tl.to(h1Ref.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2
+    })
+    .to(
+      pRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9
+      },
+      "-=0.6"
+    )
+    .to(
+      searchRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9
+      },
+      "-=0.4"
+    )
+    .to(
+      maleStudentRef.current,
+      {
+        scale: 1,
+        rotation: 0,
+        opacity: 1,
+        duration: 1.4,
+        ease: "back.out(1.7)"
+      },
+      "-=0.6"
+    )
+    .to(
+      [uiTabRef.current, happyTabRef.current, progressTabRef.current],
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        stagger: 0.15
+      },
+      "-=0.4"
+    )
+    .to(
+      [
+        twistLimeRef.current,
+        twistWhiteRightRef.current,
+        twistWhiteLeftRef.current,
+        circleLeftRef.current,
+        barrelRef.current,
+        triangleRightRef.current
+      ],
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        stagger: 0.1
+      },
+      "-=0.6"
+    );
+
+    gsap.to(twistLimeRef.current, {
+      y: -45,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    gsap.to(barrelRef.current, {
+      y: 45,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 1
+    });
+
+    gsap.to([circleLeftRef.current, twistWhiteRightRef.current, twistWhiteLeftRef.current, triangleRightRef.current], {
+      y: 20,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.2
+    });
+
+
+  }, []);
+
   return (
     <section className="hero-grid relative w-full min-h-screen overflow-hidden">
       <div className="z-10 mx-auto pt-42 flex max-w-4xl flex-col items-center text-center">
-        <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-7xl/20">
+        <h1 ref={h1Ref} className="text-4xl font-bold text-white md:text-5xl lg:text-7xl/20">
           Get Access to Hundreds
           <br />
           Courses Available
         </h1>
 
-        <p className="mt-5 max-w-3xl text-md text-white/70">
+        <p ref={pRef} className="mt-5 max-w-3xl text-md text-white/70">
           Unlock your creativity, gain valuable knowledge, and grow your
           business with our wide range of courses.
         </p>
 
-        <div className="mt-6 flex w-full max-w-lg items-center gap-2">
+        <div ref={searchRef} className="mt-6 flex w-full max-w-lg items-center gap-2">
           <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5">
             <Image
               src="/magnify.svg"
@@ -47,6 +187,7 @@ export default function Hero() {
           <div className="absolute -bottom-170 left-1/2 -z-10 h-274 w-284 -translate-x-1/2 rounded-full border-320 border-primary-color" />
           {/* male studend */}
           <Image
+            ref={maleStudentRef}
             src="/images/male-studend.png"
             alt="Student learning"
             width={680}
@@ -57,6 +198,7 @@ export default function Hero() {
 
           {/* UI/UX Design */}
           <Image
+            ref={uiTabRef}
             src="/images/hero-ui_ux-tab.png"
             alt="UI/UX Design"
             width={220}
@@ -66,6 +208,7 @@ export default function Hero() {
 
           {/* Happy Students */}
           <Image
+            ref={happyTabRef}
             src="/images/hero-happy_students-tab.png"
             alt="Happy Students"
             width={240}
@@ -75,6 +218,7 @@ export default function Hero() {
 
           {/* Learning Progress */}
           <Image
+            ref={progressTabRef}
             src="/images/hero-learning_progress-tab.png"
             alt="Learning Progress"
             width={240}
@@ -85,6 +229,7 @@ export default function Hero() {
         {/* 3d twist element start*/}
 
         <Image
+          ref={twistLimeRef}
           src="/images/twist_3d-lime.png"
           alt=""
           width={1000}
@@ -93,6 +238,7 @@ export default function Hero() {
         />
 
         <Image
+          ref={twistWhiteRightRef}
           src="/images/twist_3d-white_right.png"
           alt=""
           width={1000}
@@ -101,6 +247,7 @@ export default function Hero() {
         />
 
         <Image
+          ref={twistWhiteLeftRef}
           src="/images/twist_3d-white_left.png"
           alt=""
           width={1000}
@@ -111,6 +258,7 @@ export default function Hero() {
         {/* 3d twist element end*/}
 
         <Image
+          ref={circleLeftRef}
           src="/images/circle_model-left.png"
           alt=""
           width={1000}
@@ -119,6 +267,7 @@ export default function Hero() {
         />
 
         <Image
+          ref={barrelRef}
           src="/images/barrel-lime.png"
           alt=""
           width={2000}
@@ -127,6 +276,7 @@ export default function Hero() {
         />
 
         <Image
+          ref={triangleRightRef}
           src="/images/triangle-right.png"
           alt=""
           width={2000}

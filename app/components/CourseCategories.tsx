@@ -3,7 +3,7 @@ import Image from "next/image";
 const categories = [
   { name: "Design", icon: "Design.svg" },
   { name: "Development", icon: "Development.svg" },
-  { name: "IT & Software", icon: "It_&_Software.svg" },
+  { name: "IT & Software", icon: "IT_&_Software.svg" },
   { name: "Business", icon: "Business.svg" },
   { name: "Marketing", icon: "Marketing.svg" },
   { name: "Photography", icon: "Photography.svg" },

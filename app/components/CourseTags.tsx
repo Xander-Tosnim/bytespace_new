@@ -1,5 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef, useState, useEffect } from "react";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const categories = [
   "Featured",
@@ -21,13 +24,43 @@ const categories = [
   "Data Science",
   "Cooking",
 ];
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CourseTags() {
   const [activeCategory, setActiveCategory] = useState("Featured");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const buttons = gsap.utils.toArray(container.querySelectorAll("button"));
+
+      gsap.set(buttons, { y: 30, opacity: 0 });
+
+      gsap.to(buttons, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 75%",
+          once: true,
+        },
+      });
+    },
+    []
+  );
 
   return (
     <div className="bg-white py-10">
-      <div className="flex flex-wrap justify-center items-center gap-3 max-w-6xl mx-auto p-2">
+      <div
+        ref={containerRef}
+        className="flex flex-wrap justify-center items-center gap-3 max-w-6xl mx-auto p-2"
+      >
         {categories.map((category) => (
           <button
             key={category}
